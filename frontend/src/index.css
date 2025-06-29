@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 7% 97%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 76% 36%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 7% 97%;
+    --secondary: 222.2 84% 4.9%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 142 76% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  /* Force dark background on all root elements */
+  html {
+    @apply bg-background dark;
+    background-color: hsl(224 71% 4%) !important;
+    min-height: 100vh;
+    height: 100%;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased dark;
+    background-color: hsl(224 71% 4%) !important;
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  #root {
+    @apply bg-background dark;
+    background-color: hsl(224 71% 4%) !important;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Ensure dark theme is properly applied to all containers */
+  html, body, #root, .dark {
+    background-color: hsl(224 71% 4%) !important;
+    color: hsl(213 31% 91%) !important;
+  }
+  
+  /* Fix white sections in scroll areas */
+  [data-radix-scroll-area-viewport] {
+    background-color: hsl(224 71% 4%) !important;
+  }
+  
+  /* Fix all flex containers */
+  .flex, .flex-1, .flex-col, .flex-row {
+    background-color: transparent;
+  }
+  
+  /* Ensure main content areas have dark background */
+  .bg-background {
+    background-color: hsl(224 71% 4%) !important;
+  }
+  
+  /* Fix any remaining white areas */
+  div:not([class*="bg-"]):not([style*="background"]) {
+    background-color: transparent;
+  }
+  
+  /* Ensure welcome screen covers everything */
+  .welcome-screen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: hsl(224 71% 4%) !important;
+    z-index: 9999 !important;
+  }
+  
+  /* Target lesson content area */
+  .lesson-content-area {
+    background-color: hsl(224 71% 4%) !important;
+  }
+  
+  /* Ensure viewport always fills screen */
+  html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  #root {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* Fix any white gaps at edges */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Ensure cards and other UI elements respect dark theme */
+  .bg-card {
+    background-color: hsl(224 71% 4%) !important;
+  }
+  
+  .bg-muted {
+    background-color: hsl(223 47% 11%) !important;
+  }
+  
+  /* Fix scroll area backgrounds */
+  [data-radix-scroll-area-corner] {
+    background-color: hsl(224 71% 4%) !important;
+  }
+  
+  /* Ensure no white flashes during load */
+  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+    html {
+      background-color: hsl(224 71% 4%) !important;
+    }
+  }
+  
+  /* Fix sidebar on mobile to push content instead of overlaying */
+  @media (max-width: 1023px) {
+    .sidebar-open {
+      margin-left: 320px; /* 80 * 4 = 320px for w-80 */
+    }
+  }
+  
+  /* Ensure smooth transitions */
+  .sidebar-transition {
+    transition: margin-left 300ms ease-in-out;
+  }
+  
+  /* Fix text overflow in sidebar */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Ensure sidebar content doesn't overflow */
+  .sidebar-content {
+    min-width: 0;
+    overflow: hidden;
+  }
+}
+
+/* Enhanced animations and interactions */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .gradient-border {
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+                linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent))) border-box;
+    border: 2px solid transparent;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Enhanced focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-muted rounded;
+}
+
+/* Enhanced button hover effects */
+.enhanced-hover {
+  @apply transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95;
+}
+
+/* Floating elements */
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+} 
